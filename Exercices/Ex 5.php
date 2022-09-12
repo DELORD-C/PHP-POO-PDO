@@ -1,5 +1,11 @@
 <?php
 
+function dump ($a) {
+    echo '<pre>';
+    var_dump($a);
+    echo '</pre>';
+}
+
 include '../Classes/Personnage.php';
 include '../Classes/Mage.php';
 include '../Classes/Guerrier.php';
@@ -13,3 +19,5 @@ $voleur = new Voleur ('Legolas');
 $mage->attaque($voleur);
 $mage->attaque($voleur);
 $mage->attaque($voleur);
+
+dump($voleur);

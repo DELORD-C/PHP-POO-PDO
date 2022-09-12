@@ -10,9 +10,12 @@ class Personnage {
         $this->nom = $nom;
     }
 
-    function attaque ($cible) {
-        echo "$this->nom attaque " . $cible->getNom() . " avec $this->attaque points de dégâts.<br>";
-        $cible->setPdv($cible->getPdv() - $this->attaque);
+    function attaque (Personnage $cible) {
+        $nomDeLaCible = $cible->getNom();
+        echo "$this->nom attaque $nomDeLaCible avec $this->attaque points de dégâts.<br>";
+        $vieActuelle = $cible->getPdv();
+        $nouveauPointsDeVie = $vieActuelle - $this->attaque;
+        $cible->setPdv($nouveauPointsDeVie);
     }
 
     function getNom () {
