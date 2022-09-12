@@ -79,4 +79,6 @@ foreach ($tab as $key => $value) {
 
 require 'Classes/Client.php';
 
-$client = new Client;
+$client1 = new Client('DELORD', 'Clément');
+
+echo $client->nom;
