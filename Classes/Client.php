@@ -29,4 +29,9 @@ class Client {
     function setPrenom(string $prenom) {
         $this->prenom = $prenom;
     }
+
+    function __destruct()
+    {
+        echo 'Client détruit';
+    }
 }
