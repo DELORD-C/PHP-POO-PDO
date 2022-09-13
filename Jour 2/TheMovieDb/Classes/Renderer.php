@@ -5,6 +5,10 @@ class Renderer {
     private $html = "";
 
     function listOfFilms(array $films) {
+        if (empty($films)) {
+            $this->html .= 'Aucun résultat';
+            return;
+        }
         $html = "<ul>";
         foreach ($films as $value) {
             $html .= "<li>" . $value->getName() . "</li>";
@@ -22,7 +26,7 @@ class Renderer {
         ";
     }
 
-    function __destruct()
+    function render()
     {
         $page = file_get_contents('Templates/Page.html');
         echo str_replace('{{content}}', $this->html, $page);

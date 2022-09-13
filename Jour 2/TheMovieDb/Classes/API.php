@@ -37,10 +37,6 @@ class API {
             echo "Une erreur s'est produite";
         }
 
-        if (empty($response->results)) {
-            echo "Aucun résultat";
-        }
-
         $films = [];
         foreach ($response->results as $value) {
             $film = new Film (
