@@ -25,20 +25,31 @@ class API {
         );
     }
 
-    function getFilmByName($query) {
-        $response = json_decode(
-            file_get_contents(
-                'https://api.themoviedb.org/3/search/movie?api_key=' . $this->key . '&query=' . $query
-            )
-        );
+    function getFilmsByName($query) {
+        try {
+            $response = json_decode(
+                file_get_contents(
+                    'https://api.themoviedb.org/3/search/movie?api_key=' . $this->key . '&query=' . $query
+                )
+            );
+        }
+        catch (Exception $e) {
+            echo "Une erreur s'est produite";
+        }
 
-        $this->dump($response);
-        
-        // Il faut modifier le retour de la fonction (car on renvoie 0, 1, ou plusieurs films)
-        // return new Film (
-        //     $response->original_title,
-        //     $response->poster_path,
-        //     $response->overview
-        // );
+        if (empty($response->results)) {
+            echo "Aucun résultat";
+        }
+
+        $films = [];
+        foreach ($response->results as $value) {
+            $film = new Film (
+                $value->original_title,
+                $value->poster_path,
+                $value->overview
+            );
+            array_push($films, $film);
+        }
+        return $films;
     }
 }

@@ -3,18 +3,12 @@
 require "Classes/Autoloader.php";
 
 $api = new Api ('625b3e1220c0fca7c7ac7f6fcca786ac');
+$renderer = new Renderer();
 
-if (isset($_GET['query'])) {
-    $api->getFilmByName($_GET['query']);
+$renderer->searchForm();
+
+if (isset($_GET['query']) && !empty($_GET['query'])) {
+    $films = $api->getFilmsByName($_GET['query']);
+    $renderer->listOfFilms($films);
 }
 
-// $madmax = $api->getFilmById(76341);
-
-// var_dump($madmax);
-
-?>
-
-<form action="">
-    <input type="text" name="query">
-    <input type="submit" value="Recherche">
-</form>
