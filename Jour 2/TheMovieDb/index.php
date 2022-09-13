@@ -11,4 +11,3 @@ if (isset($_GET['query']) && !empty($_GET['query'])) {
     $films = $api->getFilmsByName($_GET['query']);
     $renderer->listOfFilms($films);
 }
-
