@@ -80,3 +80,4 @@ foreach ($tab as $key => $value) {
 require 'Classes/Client.php';
 
 $client1 = new Client('DELORD', 'Clément');
+

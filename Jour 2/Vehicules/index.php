@@ -10,13 +10,8 @@ $avion = new Avion("A320", 200, 50, "Airbus");
 $helico = new Helicoptere("CH7", 150, 140, "Kompress");
 $voiture = new Voiture("RX8", 75, 50, "Mazda", 4);
 
-echo $moto->wheeling();
-$moto->accelerer();
-echo $moto->wheeling();
+echo $moto->TVA;
+echo Moto::TVA;
+echo Vehicule::TVA;
 
-echo $avion->getVitesse() . '<br>';
-$avion->accelerer();
-echo $avion->getVitesse() . '<br>';
-$avion->accelerer();
-echo $avion->getVitesse() . '<br>';
-$avion->accelerer();
+$moto->turbo();

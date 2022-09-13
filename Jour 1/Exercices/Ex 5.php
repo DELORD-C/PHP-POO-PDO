@@ -21,3 +21,5 @@ $mage->attaque($voleur);
 $mage->attaque($voleur);
 
 dump($voleur);
+
+echo $mage->attaque;
