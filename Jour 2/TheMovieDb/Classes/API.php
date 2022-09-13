@@ -4,7 +4,7 @@ class API {
     
     use Dump;
 
-    private string $key;
+    private $key;
 
     function __construct(string $key)
     {

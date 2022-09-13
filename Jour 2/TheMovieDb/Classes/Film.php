@@ -1,9 +1,9 @@
 <?php
 
 class Film {
-    private string $name;
-    private string $poster;
-    private string $resume;
+    private $name;
+    private $poster;
+    private $resume;
 
     function __construct(string $name, string $poster, string $resume)
     {
