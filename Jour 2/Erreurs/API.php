@@ -7,5 +7,5 @@ $response = file_get_contents(
 $decode = json_decode($response);
 
 echo "<pre>";
-var_dump($decode);
+var_dump($decode->spoken_languages[0]->name);
 echo "</pre>";
