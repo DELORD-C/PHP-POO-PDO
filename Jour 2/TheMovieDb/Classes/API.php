@@ -1,7 +1,8 @@
 <?php
 
 class API {
-use Dump;
+    
+    use Dump;
 
     private string $key;
 
