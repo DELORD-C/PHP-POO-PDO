@@ -3,7 +3,9 @@
 require "Classes/Autoloader.php";
 //Le fichier Autoload.php va inclure tous nos fichiers de classe automatiquement.
 
-$api = new Api ('625b3e1220c0fca7c7ac7f6fcca786ac');
+$env = json_decode(file_get_contents('env.json'));
+
+$api = new Api ($env->key);
 //On hydrate/instancie l'objet API en lui passant ntre clé en paramètre
 
 $renderer = new Renderer();

@@ -21,8 +21,8 @@ class Film {
 
     function getPoster() {
         if (empty($this->poster)) {
-            //si le film n'a pas de poster, on stocke la string suivante dans $poster
-            $poster = 'Assets/default.jfif';
+            //si le film n'a pas de poster, on stocke la string suivante (qui vient du fichier env.json) dans $poster
+            $poster = json_decode(file_get_contents('env.json'))->default_img;
         }
         else {
             //sinon on stocke le poster du film dans $poster
