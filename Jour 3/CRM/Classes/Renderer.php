@@ -1,21 +1,16 @@
 <?php
 
 class Renderer {
+    function __construct()
+    {
+        echo file_get_contents('Templates/header.html');
+    }
+
     function customers(array $customers) {
-        echo '
-        <table>
-            <thead>
-                <tr>
-                    <th>Name</th>
-                    <th>City</th>
-                    <th>Country</th>
-                    <th>Outstanding</th>
-                </tr>
-            </thead>
-            <tbody>
-        ';
+        $template = file_get_contents('Templates/customer-list.html');
+        $content = "";
         foreach ($customers as $customer) {
-            echo '
+            $content .= '
             <tr>
                 <td>' . $customer->getCUST_NAME() . '</td>
                 <td>' . $customer->getCUST_CITY() . '</td>
@@ -24,9 +19,15 @@ class Renderer {
             </tr>
             ';
         }
-        echo '
-            </tbody>
-        </table>
-        ';
+        echo str_replace('{{content}}', $content, $template);
+    }
+
+    function customerForm() {
+        echo file_get_contents('Templates/customer-insert.html');
+    }
+
+    function __destruct()
+    {
+        echo '</body></html>';
     }
 }
