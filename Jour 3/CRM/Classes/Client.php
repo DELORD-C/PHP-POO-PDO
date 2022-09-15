@@ -15,18 +15,18 @@ class Client {
     private $AGENT_CODE;
 
     function __construct(
-        $CUST_CODE,
-        $CUST_NAME,
-        $CUST_CITY,
-        $WORKING_AREA,
-        $CUST_COUNTRY,
-        $GRADE,
-        $OPENING_AMT,
-        $RECEIVE_AMT,
-        $PAYMENT_AMT,
-        $OUTSTANDING_AMT,
-        $PHONE_NO,
-        $AGENT_CODE
+        String $CUST_CODE,
+        String $CUST_NAME,
+        String $CUST_CITY,
+        String $WORKING_AREA,
+        String $CUST_COUNTRY,
+        String $GRADE,
+        String $OPENING_AMT,
+        String $RECEIVE_AMT,
+        String $PAYMENT_AMT,
+        String $OUTSTANDING_AMT,
+        String $PHONE_NO,
+        String $AGENT_CODE
     )
     {
         $this->CUST_CODE = $CUST_CODE;
@@ -47,6 +47,14 @@ class Client {
         return $this->CUST_NAME;
     }
 
+    function getCUST_CODE() {
+        return $this->CUST_CODE;
+    }
+
+    function getWORKING_AREA() {
+        return $this->WORKING_AREA;
+    }
+
     function getCUST_CITY() {
         return $this->CUST_CITY;
     }
@@ -55,7 +63,31 @@ class Client {
         return $this->CUST_COUNTRY;
     }
 
+    function getGRADE() {
+        return $this->GRADE;
+    }
+
+    function getOPENING_AMT() {
+        return $this->OPENING_AMT;
+    }
+
+    function getRECEIVE_AMT() {
+        return $this->RECEIVE_AMT;
+    }
+
+    function getPAYMENT_AMT() {
+        return $this->PAYMENT_AMT;
+    }
+
     function getOUTSTANDING_AMT() {
         return $this->OUTSTANDING_AMT;
+    }
+
+    function getPHONE_NO() {
+        return $this->PHONE_NO;
+    }
+
+    function getAGENT_CODE() {
+        return $this->AGENT_CODE;
     }
 }

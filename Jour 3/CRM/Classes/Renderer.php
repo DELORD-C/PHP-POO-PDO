@@ -21,6 +21,8 @@ class Renderer {
                 <td>' . $customer->getCUST_CITY() . '</td>
                 <td>' . $customer->getCUST_COUNTRY() . '</td>
                 <td>' . $customer->getOUTSTANDING_AMT() . '</td>
+                <td><a class="btn btn-primary" href="edit-customer.php?customer=' . $customer->getCUST_CODE() . '">Edit</a></td>
+                <td><a class="btn btn-danger" href="?delete=' . $customer->getCUST_CODE() . '">Delete</a></td>
             </tr>
             ';
         }
