@@ -67,4 +67,10 @@ class BDD {
         $query->bindParam(12, $AGENT_CODE);
         $query->execute();
     }
+
+    function deleteCustomer(String $code) {
+        $query = $this->conn->prepare("DELETE FROM customer WHERE CUST_CODE = ?");
+        $query->bindParam(1, $code);
+        $query->execute();
+    }
 }

@@ -3,6 +3,11 @@
 include 'init.php';
 //on inclut init.php qui initialize toutes nos classes
 
+//Vérification de la variable $_GET['delete'] et application le cas échéant
+if (isset($_GET['delete']) && !empty($_GET['delete'])) {
+    $bdd->deleteCustomer($_GET['delete']);
+}
+
 $clients = $bdd->getAllCustomers();
 //on récupère un tableau avec tous les clients
 
