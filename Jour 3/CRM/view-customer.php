@@ -14,6 +14,8 @@ if (isset($_GET['customer']) && !empty($_GET['customer'])) {
         else {
             echo "L'agent n'existe pas/plus.";
         }
+
+        
     }
     else { //Si le client n'existe pas
         header('Location: index.php'); //On redirige vers l'accueil
