@@ -73,4 +73,34 @@ class BDD {
         $query->bindParam(1, $code);
         $query->execute();
     }
+
+    function getCustomer(String $code) {
+        //on prépare la requête
+        $query = $this->conn->prepare("SELECT * FROM customer WHERE CUST_CODE = ?");
+
+        //On remplace le ? par $code
+        $query->bindParam(1, $code);
+
+        //On execute la requête
+        $query->execute();
+
+        //on transforme les données en tableau qu'on stocke dans $result
+        $result = $query->fetch();
+
+        //on instancie un Client avec les données de $result puis on le retourne
+        return new Client (
+            $result['CUST_CODE'],
+            $result['CUST_NAME'],
+            $result['CUST_CITY'],
+            $result['WORKING_AREA'],
+            $result['CUST_COUNTRY'],
+            $result['GRADE'],
+            $result['OPENING_AMT'],
+            $result['RECEIVE_AMT'],
+            $result['PAYMENT_AMT'],
+            $result['OUTSTANDING_AMT'],
+            $result['PHONE_NO'],
+            $result['AGENT_CODE']
+        );
+    }
 }

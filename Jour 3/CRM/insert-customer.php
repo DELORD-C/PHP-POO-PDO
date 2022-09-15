@@ -24,4 +24,4 @@ if (count($_POST) >= 12 && isset($_POST['CUST_CODE']) && !empty($_POST['CUST_COD
     echo "The customer has been created successfully.";
 }
 
-$renderer->customerForm();
+$renderer->customerFormInsert();
