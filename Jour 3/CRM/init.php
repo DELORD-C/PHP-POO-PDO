@@ -1,6 +1,7 @@
 <?php
 
 include 'Classes/Autoloader.php';
+
 $renderer = new Renderer;
 $env = json_decode(file_get_contents('env.json'));
 $bdd = new BDD (

@@ -3,15 +3,19 @@
 class BDD {
     private $conn;
 
-    function __construct(string $string, $user, $password)
+    function __construct(string $string, string $user, string $password)
     {
         $this->conn = new PDO($string, $user, $password);
     }
 
     function getAllCustomers() {
+        //on utilise notre objet PDO stocké dans l'attribut $this->conn pour prépare la requète
         $query = $this->conn->prepare("SELECT * FROM customer");
+        //on execute la requète
         $query->execute();
+        //on récupère les résultats et on les stocke dans $results
         $results = $query->fetchAll();
+
 
         $customers = [];
 
@@ -33,5 +37,9 @@ class BDD {
             array_push($customers, $customer);
         }
         return $customers;
+    }
+
+    function insertCustomer(Client $client) {
+        
     }
 }
