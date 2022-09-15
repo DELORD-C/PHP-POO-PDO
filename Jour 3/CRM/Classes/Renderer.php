@@ -21,9 +21,11 @@ class Renderer {
                 <td>' . $customer->getCUST_CITY() . '</td>
                 <td>' . $customer->getCUST_COUNTRY() . '</td>
                 <td>' . $customer->getOUTSTANDING_AMT() . '</td>
-                <td><a class="btn btn-primary" href="view-customer.php?customer=' . $customer->getCUST_CODE() . '">View</a></td>
-                <td><a class="btn btn-primary" href="edit-customer.php?customer=' . $customer->getCUST_CODE() . '">Edit</a></td>
-                <td><a class="btn btn-danger" href="?delete=' . $customer->getCUST_CODE() . '">Delete</a></td>
+                <td>
+                    <a class="btn btn-primary" href="view-customer.php?customer=' . $customer->getCUST_CODE() . '">View</a>
+                    <a class="btn btn-primary" href="edit-customer.php?customer=' . $customer->getCUST_CODE() . '">Edit</a>
+                    <a class="btn btn-danger" href="?delete=' . $customer->getCUST_CODE() . '">Delete</a>
+                </td>
             </tr>
             ';
         }
@@ -40,7 +42,10 @@ class Renderer {
     }
 
     function customerFormEdit(Client $customer) {
+        //On récupère le contenu du template
         $template = file_get_contents('Templates/customer-edit.html');
+
+        //On remplace les variables dans le contenu du template
         $template = str_replace([
             '{{CUST_NAME}}',
             '{{CUST_CITY}}',
@@ -67,6 +72,7 @@ class Renderer {
             $customer->getAGENT_CODE() 
         ], $template);
 
+        //On affiche le résultat
         echo $template;
     }
 
@@ -98,6 +104,26 @@ class Renderer {
             $customer->getOUTSTANDING_AMT(),
             $customer->getPHONE_NO(),
             $customer->getAGENT_CODE()
+        ], $template);
+        echo $template;
+    }
+
+    function agentView(Agent $agent) {
+        $template = file_get_contents('Templates/agent-view.html');
+        $template = str_replace([
+            '{{AGENT_CODE}}',
+            '{{AGENT_NAME}}',
+            '{{WORKING_AREA}}',
+            '{{COUNTRY}}',
+            '{{PHONE_NO}}',
+            '{{COMMISSION}}'
+        ], [
+            $agent->getAGENT_CODE(),
+            $agent->getAGENT_NAME(),
+            $agent->getWORKING_AREA(),
+            $agent->getCOUNTRY(),
+            $agent->getPHONE_NO(),
+            $agent->getCOMMISSION()
         ], $template);
         echo $template;
     }

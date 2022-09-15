@@ -7,6 +7,13 @@ if (isset($_GET['customer']) && !empty($_GET['customer'])) {
     $client = $bdd->getCustomer($_GET['customer']); //On récupère le client
     if ($client) { //Si le client existe
         $renderer->customerView($client); //On demande au renderer d'afficher les infos
+        $agent = $bdd->getAgent($client->getAGENT_CODE()); // On récupère l'agent avec son Code grâce à l'objet bdd
+        if ($agent) { //Si l'agent existe
+            $renderer->agentView($agent); //On demande au renderer d'afficher les infos
+        }
+        else {
+            echo "L'agent n'existe pas/plus.";
+        }
     }
     else { //Si le client n'existe pas
         header('Location: index.php'); //On redirige vers l'accueil

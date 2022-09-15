@@ -5,6 +5,7 @@ class BDD {
 
     function __construct(string $string, string $user, string $password)
     {
+        // On instancie un objet PDO pour créer la connexion à la base de donnée et on le stocke dans l'attribut $this->conn
         $this->conn = new PDO($string, $user, $password);
     }
 
@@ -16,10 +17,11 @@ class BDD {
         //on récupère les résultats et on les stocke dans $results
         $results = $query->fetchAll();
 
-
+        //On créé un tableau vide pour stocker les objets Client
         $customers = [];
 
         foreach ($results as $result) {
+            //Pour chaque résultat, on instancie un object Clien avec ses attributs
             $customer = new Client (
                 $result['CUST_CODE'],
                 $result['CUST_NAME'],
@@ -34,12 +36,16 @@ class BDD {
                 $result['PHONE_NO'],
                 $result['AGENT_CODE']
             );
+            //On ajoute l'objet instancié dans le tableau $customers
             array_push($customers, $customer);
         }
+        //on retourne le tableau
         return $customers;
     }
 
     function insertCustomer(Client $client) {
+
+        //On doit stocker chaque attribut de $client dans des variables car bindParam n'accepte pas les fonctions
         $CUST_CODE = $client->getCUST_CODE();
         $CUST_NAME = $client->getCUST_NAME();
         $CUST_CITY = $client->getCUST_CITY();
@@ -52,7 +58,9 @@ class BDD {
         $OUTSTANDING_AMT = $client->getOUTSTANDING_AMT();
         $PHONE_NO = $client->getPHONE_NO();
         $AGENT_CODE = $client->getAGENT_CODE();
+
         $query = $this->conn->prepare("INSERT INTO customer VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        
         $query->bindParam(1, $CUST_CODE);
         $query->bindParam(2, $CUST_NAME);
         $query->bindParam(3, $CUST_CITY);
@@ -122,5 +130,32 @@ class BDD {
         $query->bindParam(11, $data['AGENT_CODE']);
         $query->bindParam(12, $code);
         $query->execute();
+    }
+
+    function getAgent(String $code) {
+        //on prépare la requête
+        $query = $this->conn->prepare("SELECT * FROM agents WHERE AGENT_CODE = ?");
+
+        //On remplace le ? par $code
+        $query->bindParam(1, $code);
+
+        //On execute la requête
+        $query->execute();
+
+        //on transforme les données en tableau qu'on stocke dans $result
+        $result = $query->fetch();
+
+        if ($result) { //Si il existe un agent 
+            //on instancie un Agent avec les données de $result puis on le retourne
+            return new Agent (
+                $result['AGENT_CODE'],
+                $result['AGENT_NAME'],
+                $result['WORKING_AREA'],
+                $result['COMMISSION'],
+                $result['PHONE_NO'],
+                $result['COUNTRY']
+            );
+        }
+        return false;
     }
 }

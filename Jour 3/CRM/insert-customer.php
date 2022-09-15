@@ -4,6 +4,7 @@ include 'init.php';
 
 //Vérification des variables POST et/ou GET
 if (count($_POST) >= 12 && isset($_POST['CUST_CODE']) && !empty($_POST['CUST_CODE'])) {
+    //Si les variables POST sont correct, on instancie un Client avec les données du formulaire
     $client = new Client(
         $_POST['CUST_CODE'],
         $_POST['CUST_NAME'],
@@ -19,9 +20,12 @@ if (count($_POST) >= 12 && isset($_POST['CUST_CODE']) && !empty($_POST['CUST_COD
         $_POST['AGENT_CODE']
     );
 
+    //On envoi le Client à la méthode insertCustomer de l'objet BDD
     $bdd->insertCustomer($client);
 
+    //On affiche un message de confirmation
     echo "The customer has been created successfully.";
 }
 
+//On affiche le formulaire de création de Client
 $renderer->customerFormInsert();
