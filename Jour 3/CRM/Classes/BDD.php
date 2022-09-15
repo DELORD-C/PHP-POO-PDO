@@ -87,20 +87,40 @@ class BDD {
         //on transforme les données en tableau qu'on stocke dans $result
         $result = $query->fetch();
 
-        //on instancie un Client avec les données de $result puis on le retourne
-        return new Client (
-            $result['CUST_CODE'],
-            $result['CUST_NAME'],
-            $result['CUST_CITY'],
-            $result['WORKING_AREA'],
-            $result['CUST_COUNTRY'],
-            $result['GRADE'],
-            $result['OPENING_AMT'],
-            $result['RECEIVE_AMT'],
-            $result['PAYMENT_AMT'],
-            $result['OUTSTANDING_AMT'],
-            $result['PHONE_NO'],
-            $result['AGENT_CODE']
-        );
+        if ($result) {
+            //on instancie un Client avec les données de $result puis on le retourne
+            return new Client (
+                $result['CUST_CODE'],
+                $result['CUST_NAME'],
+                $result['CUST_CITY'],
+                $result['WORKING_AREA'],
+                $result['CUST_COUNTRY'],
+                $result['GRADE'],
+                $result['OPENING_AMT'],
+                $result['RECEIVE_AMT'],
+                $result['PAYMENT_AMT'],
+                $result['OUTSTANDING_AMT'],
+                $result['PHONE_NO'],
+                $result['AGENT_CODE']
+            );
+        }
+        return false;
+    }
+
+    function updateCustomer(String $code, Array $data) {
+        $query = $this->conn->prepare("UPDATE customer SET CUST_NAME = ?, CUST_CITY = ?, WORKING_AREA = ?, CUST_COUNTRY = ?, GRADE = ?, OPENING_AMT = ?, RECEIVE_AMT = ?, PAYMENT_AMT = ?, OUTSTANDING_AMT = ?, PHONE_NO = ?, AGENT_CODE = ? WHERE CUST_CODE = ?");
+        $query->bindParam(1, $data['CUST_NAME']);
+        $query->bindParam(2, $data['CUST_CITY']);
+        $query->bindParam(3, $data['WORKING_AREA']);
+        $query->bindParam(4, $data['CUST_COUNTRY']);
+        $query->bindParam(5, $data['GRADE']);
+        $query->bindParam(6, $data['OPENING_AMT']);
+        $query->bindParam(7, $data['RECEIVE_AMT']);
+        $query->bindParam(8, $data['PAYMENT_AMT']);
+        $query->bindParam(9, $data['OUTSTANDING_AMT']);
+        $query->bindParam(10, $data['PHONE_NO']);
+        $query->bindParam(11, $data['AGENT_CODE']);
+        $query->bindParam(12, $code);
+        $query->execute();
     }
 }

@@ -5,7 +5,7 @@ include 'init.php';
 
 //Vérification de la variable $_GET['delete'] et application le cas échéant
 if (isset($_GET['delete']) && !empty($_GET['delete'])) {
-    $bdd->deleteCustomer($_GET['delete']);
+    $bdd->deleteCustomer($_GET['delete']); //mise à jour bdd
 }
 
 $clients = $bdd->getAllCustomers();
