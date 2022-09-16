@@ -112,6 +112,7 @@ class BDD {
                 $result['AGENT_CODE']
             );
         }
+        throw new Exception('Aucun client n\'existe avec ce code', 1);
         return false;
     }
 
