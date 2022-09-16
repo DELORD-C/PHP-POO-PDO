@@ -25,4 +25,23 @@ try {
     echo '</pre>';
 }
 
+//on définit une fonction ou l'on divise a par b
+function division (int $a, int $b) {
+    if ($b == 0) { //si b est égal à 0
+        throw new Exception('Division par zéro impossible !', 2);
+        // On jete une exception
+    }
+    return $a / $b;
+}
+
+try { // On teste notre fonction
+    division(18, 0);
+} catch (Throwable $e) {
+    // Si il y a une erreur, on l'attrape et on affiche le message de celle-ci
+    echo '<pre>';
+    // var_dump($e);
+    echo $e->getMessage();
+    echo '</pre>';
+}
+
 echo 'fin';
