@@ -1,10 +1,18 @@
 <?php
 
 class Renderer {
-    function __construct()
+    function __construct(Auth $auth)
     {
         //affichage de la partie supèrieur de notre page html (header)
-        echo file_get_contents('Templates/header.html');
+        $template = file_get_contents('Templates/header.html');
+        if ($auth->isLoggedIn()) {
+            $nav = file_get_contents('Templates/nav.html');
+            $template = str_replace('{{nav}}', $nav, $template);
+        }
+        else {
+            $template = str_replace('{{nav}}', '', $template);
+        }
+        echo $template;
     }
 
     function customers(array $customers) {

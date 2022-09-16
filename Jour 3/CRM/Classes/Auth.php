@@ -35,9 +35,16 @@ class Auth {
     }
 
     function requireLoggedOut() {
-        if (isset($_SESSION['connection']) && $_SESSION['connection'] != 'true') {
+        if (isset($_SESSION['connection']) && $_SESSION['connection'] == 'true') {
             //si utilisateur connecté, redirection vers index
             header('Location: index.php');
         }
+    }
+
+    function isLoggedIn() {
+        if (isset($_SESSION['connection']) && $_SESSION['connection'] == 'true') {
+            return true;
+        }
+        return false;
     }
 }
