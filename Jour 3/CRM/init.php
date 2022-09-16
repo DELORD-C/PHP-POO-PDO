@@ -6,6 +6,9 @@ include 'Classes/Autoloader.php';
 $renderer = new Renderer;
 //On instancie un objet Renderer
 
+$auth = new Auth();
+//On instancie l'objet Auth pour démmarer la session
+
 $env = json_decode(file_get_contents('env.json'));
 //On récupère les variables d'environnement dans env.json et on les transforme en objet.
 

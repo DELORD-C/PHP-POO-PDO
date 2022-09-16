@@ -2,6 +2,8 @@
 
 include 'init.php';
 
+$auth->requireLoggedIn();
+
 //On vérifie qu'on a bien un paramètre customer dans $_GET (les paramètre d'url ex: https://index.php?customer=12) et que sa valeur n'est pas vide.
 if (isset($_GET['customer']) && !empty($_GET['customer'])) {
 

@@ -128,6 +128,10 @@ class Renderer {
         echo $template;
     }
 
+    function login() {
+        echo file_get_contents('Templates/login.html');
+    }
+
     function __destruct()
     {
         //lors de la destruction de l'objet (fin du script), on ferme les balises html et body

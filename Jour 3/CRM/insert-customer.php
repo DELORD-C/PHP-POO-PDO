@@ -2,6 +2,8 @@
 
 include 'init.php';
 
+$auth->requireLoggedIn();
+
 //Vérification des variables POST et/ou GET
 if (count($_POST) >= 12 && isset($_POST['CUST_CODE']) && !empty($_POST['CUST_CODE'])) {
     //Si les variables POST sont correct, on instancie un Client avec les données du formulaire
